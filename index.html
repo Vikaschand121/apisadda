@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5f1">
+  <meta name="description" content="Explore 20 ready-to-scope API integrations with transparent setup, monthly, and annual development estimates.">
+  <title>APISADDA — APIs, ready for business</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f5f1;
+      --surface: #fff;
+      --ink: #18221d;
+      --muted: #68736c;
+      --line: #dfe4df;
+      --green: #126b4d;
+      --green-dark: #0d4f39;
+      --lime: #d5f36a;
+      --coral: #ee725c;
+      --shadow: 0 18px 55px rgba(20, 41, 31, .11);
+      font-family: "DM Sans", sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+    .shell { width: min(1240px, calc(100% - 56px)); margin: 0 auto; }
+    .topbar { height: 76px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+    .brand { display: inline-flex; gap: 10px; align-items: center; font: 700 21px "Space Grotesk", sans-serif; letter-spacing: 0; text-decoration: none; }
+    .brand-mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--green); color: white; font-size: 15px; }
+    .nav { display: flex; align-items: center; gap: 29px; font-size: 13px; color: #536057; }
+    .nav a { text-decoration: none; }
+    .nav a:hover { color: var(--green); }
+    .nav-cta { padding: 10px 15px; border-radius: 5px; color: white !important; background: var(--ink); font-weight: 600; }
+    .hero { padding: 68px 0 53px; display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: end; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 760px; margin: 18px 0 15px; font: 600 clamp(42px, 5.6vw, 72px)/.99 "Space Grotesk", sans-serif; letter-spacing: 0; }
+    h1 span { color: var(--green); }
+    .hero-copy { max-width: 610px; margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+    .hero-note { background: var(--lime); padding: 20px 21px; border-radius: 5px; transform: rotate(1deg); }
+    .hero-note strong { display: block; font: 600 30px "Space Grotesk", sans-serif; }
+    .hero-note p { margin: 5px 0 0; font-size: 12px; line-height: 1.5; }
+    .note-star { float: right; color: var(--green); font-size: 23px; }
+    .ticker { background: var(--green); color: white; overflow: hidden; }
+    .ticker-inner { min-height: 47px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+    .ticker-inner span { white-space: nowrap; }
+    .ticker b { color: var(--lime); font-size: 15px; padding: 0 5px; }
+    .catalog { padding: 50px 0 78px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+    .section-heading h2 { margin: 7px 0 0; font: 600 31px "Space Grotesk", sans-serif; letter-spacing: 0; }
+    .count { color: var(--muted); font-size: 13px; }
+    .tools { display: flex; align-items: center; gap: 12px; margin-bottom: 19px; }
+    .search { position: relative; flex: 1; max-width: 350px; }
+    .search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #748078; }
+    .search input { width: 100%; height: 43px; padding: 0 14px 0 40px; border: 1px solid var(--line); border-radius: 4px; background: white; color: var(--ink); outline: none; }
+    .search input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(18,107,77,.1); }
+    .filters { display: flex; gap: 7px; flex-wrap: wrap; }
+    .filter { border: 1px solid var(--line); background: transparent; padding: 9px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+    .filter:hover, .filter.active { background: var(--ink); border-color: var(--ink); color: white; }
+    .price-switch { display: inline-flex; margin-left: auto; padding: 3px; border: 1px solid var(--line); border-radius: 5px; background: #e9ece7; }
+    .price-switch button { border: 0; border-radius: 3px; padding: 8px 11px; background: transparent; font-size: 11px; cursor: pointer; }
+    .price-switch button.active { background: white; box-shadow: 0 1px 3px #18221d18; font-weight: 700; }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; }
+    .api-card { min-height: 224px; padding: 17px; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 5px; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; animation: arrive .32s both; }
+    .api-card:hover { transform: translateY(-3px); border-color: #a6b9ab; box-shadow: 0 10px 24px #18221d0c; }
+    @keyframes arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .card-top { display: flex; justify-content: space-between; align-items: start; }
+    .api-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 4px; background: #e7f2eb; color: var(--green); font: 700 15px "Space Grotesk", sans-serif; }
+    .api-card:nth-child(4n + 2) .api-icon { background: #fff0e8; color: #a04f31; }
+    .api-card:nth-child(4n + 3) .api-icon { background: #edf0d9; color: #667421; }
+    .api-card:nth-child(4n) .api-icon { background: #e8edf3; color: #425c73; }
+    .popular { color: var(--green); background: #e8f3ed; padding: 5px 7px; border-radius: 3px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .api-card h3 { margin: 16px 0 5px; font: 600 17px "Space Grotesk", sans-serif; letter-spacing: 0; }
+    .api-card .description { margin: 0; min-height: 36px; color: var(--muted); font-size: 11px; line-height: 1.55; }
+    .card-bottom { margin-top: auto; padding-top: 15px; display: flex; align-items: end; justify-content: space-between; }
+    .price-label { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: .07em; }
+    .price { margin-top: 3px; font: 600 19px "Space Grotesk", sans-serif; }
+    .price small { font: 400 10px "DM Sans", sans-serif; color: var(--muted); }
+    .setup-label { margin-top: 3px; color: var(--muted); font-size: 10px; }
+    .detail-button { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid var(--line); background: white; border-radius: 4px; cursor: pointer; }
+    .detail-button:hover { background: var(--green); border-color: var(--green); color: white; }
+    .empty { grid-column: 1 / -1; padding: 55px 20px; text-align: center; color: var(--muted); border: 1px dashed #bdc7bf; }
+    .feature-band { background: #19251f; color: white; }
+    .feature-inner { padding: 50px 0; display: grid; grid-template-columns: 1fr 1.15fr; gap: 55px; align-items: center; }
+    .feature-band .eyebrow { color: var(--lime); }
+    .feature-band h2 { margin: 13px 0 12px; max-width: 500px; font: 600 35px/1.1 "Space Grotesk", sans-serif; letter-spacing: 0; }
+    .feature-band p { max-width: 450px; margin-bottom: 0; color: #b7c2ba; font-size: 13px; line-height: 1.7; }
+    .feature-price { display: flex; align-items: center; gap: 20px; padding: 22px 0; border-top: 1px solid #ffffff2a; border-bottom: 1px solid #ffffff2a; }
+    .feature-price strong { font: 600 35px "Space Grotesk", sans-serif; color: var(--lime); white-space: nowrap; }
+    .feature-price span { max-width: 230px; color: #bdc8c0; font-size: 12px; line-height: 1.5; }
+    .feature-link { display: inline-flex; align-items: center; gap: 9px; margin-top: 19px; color: white; font-size: 12px; font-weight: 700; text-decoration: none; }
+    .feature-link:hover { color: var(--lime); }
+    .trust { padding: 57px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+    .trust-item { border-left: 2px solid var(--green); padding-left: 15px; }
+    .trust-item strong { display: block; margin-bottom: 5px; font: 600 14px "Space Grotesk", sans-serif; }
+    .trust-item span { color: var(--muted); font-size: 11px; line-height: 1.6; }
+    footer { border-top: 1px solid var(--line); }
+    .footer-inner { min-height: 75px; display: flex; justify-content: space-between; align-items: center; gap: 15px; color: var(--muted); font-size: 10px; }
+    .footer-inner strong { color: var(--ink); font: 700 14px "Space Grotesk", sans-serif; }
+    .disclaimer { max-width: 650px; text-align: right; line-height: 1.55; }
+    dialog { width: min(800px, calc(100% - 30px)); max-height: min(88vh, 900px); padding: 0; border: 0; border-radius: 7px; color: var(--ink); box-shadow: var(--shadow); }
+    dialog::backdrop { background: rgba(16, 28, 21, .58); backdrop-filter: blur(3px); }
+    .dialog-head { display: flex; align-items: start; justify-content: space-between; gap: 20px; padding: 25px 27px 21px; border-bottom: 1px solid var(--line); }
+    .dialog-head h2 { margin: 7px 0 5px; font: 600 27px "Space Grotesk", sans-serif; letter-spacing: 0; }
+    .dialog-head p { margin: 0; color: var(--muted); font-size: 12px; }
+    .close { width: 34px; height: 34px; display: grid; place-items: center; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 4px; background: white; cursor: pointer; }
+    .dialog-content { max-height: calc(88vh - 100px); overflow: auto; padding: 23px 27px 28px; }
+    .detail-summary { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 23px; }
+    .summary-box { min-width: 135px; flex: 1; padding: 12px; border: 1px solid var(--line); border-radius: 4px; }
+    .summary-box span { display: block; margin-bottom: 5px; color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: .07em; }
+    .summary-box strong { font: 600 17px "Space Grotesk", sans-serif; }
+    .detail-section h3 { margin: 20px 0 10px; font: 600 15px "Space Grotesk", sans-serif; }
+    .detail-section ul { margin: 0; padding-left: 18px; color: #4e5c53; font-size: 12px; line-height: 1.8; }
+    .package-table, .work-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .package-table th, .package-table td, .work-table th, .work-table td { padding: 10px 9px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .package-table th, .work-table th { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: .06em; }
+    .package-table td:last-child, .work-table td:last-child { white-space: nowrap; font-weight: 600; }
+    .package-table td strong { display: block; font-size: 12px; }
+    .package-table td span { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
+    .email-callout { margin-top: 20px; padding: 14px; background: #edf5ef; border-left: 3px solid var(--green); color: #3f5145; font-size: 11px; line-height: 1.6; }
+    .detail-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 23px; padding-top: 17px; border-top: 1px solid var(--line); }
+    .detail-actions small { max-width: 430px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .primary-button { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 4px; padding: 12px 15px; background: var(--green); color: white; font-size: 11px; font-weight: 700; text-decoration: none; white-space: nowrap; cursor: pointer; }
+    .primary-button:hover { background: var(--green-dark); }
+    @media (max-width: 1000px) {
+      .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .tools { align-items: start; flex-wrap: wrap; }
+      .price-switch { margin-left: 0; }
+      .hero { grid-template-columns: 1fr 230px; gap: 25px; }
+    }
+    @media (max-width: 700px) {
+      .shell { width: min(100% - 32px, 520px); }
+      .topbar { height: 64px; }
+      .nav { gap: 14px; }
+      .nav a:not(.nav-cta) { display: none; }
+      .hero { padding: 48px 0 37px; grid-template-columns: 1fr; gap: 23px; }
+      h1 { font-size: clamp(43px, 12vw, 60px); }
+      .hero-copy { font-size: 14px; }
+      .hero-note { max-width: 250px; }
+      .ticker-inner { justify-content: flex-start; overflow: hidden; }
+      .ticker-inner span:nth-child(n+4) { display: none; }
+      .catalog { padding: 38px 0 52px; }
+      .section-heading { align-items: start; flex-direction: column; gap: 8px; }
+      .section-heading h2 { font-size: 28px; }
+      .tools { display: block; }
+      .search { max-width: none; margin-bottom: 11px; }
+      .filters { margin-bottom: 11px; }
+      .filter { padding: 8px 10px; }
+      .price-switch { width: fit-content; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+      .api-card { min-height: 216px; padding: 13px; }
+      .api-card h3 { font-size: 15px; }
+      .api-card .description { font-size: 10px; }
+      .price { font-size: 16px; }
+      .feature-inner { padding: 40px 0; grid-template-columns: 1fr; gap: 24px; }
+      .feature-band h2 { font-size: 30px; }
+      .trust { padding: 40px 0; grid-template-columns: 1fr; gap: 21px; }
+      .footer-inner { align-items: start; flex-direction: column; justify-content: center; padding: 17px 0; }
+      .disclaimer { text-align: left; }
+      .dialog-head, .dialog-content { padding-left: 18px; padding-right: 18px; }
+      .package-table { min-width: 540px; }
+      .table-scroll { overflow-x: auto; }
+      .detail-actions { align-items: start; flex-direction: column; }
+    }
+    @media (max-width: 390px) {
+      .grid { grid-template-columns: 1fr; }
+      .api-card { min-height: 190px; }
+      .ticker-inner { font-size: 9px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="#top" aria-label="APISADDA home"><span class="brand-mark">A</span>APISADDA</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#catalog">API catalog</a>
+      <a href="#how-it-works">How it works</a>
+      <a class="nav-cta" href="mailto:hello@apisadda.com?subject=API%20integration%20enquiry">Talk to us <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="shell hero">
+      <div>
+        <div class="eyebrow">The integration desk</div>
+        <h1>Useful APIs.<br><span>Properly connected.</span></h1>
+        <p class="hero-copy">Email, maps, payments, AI and more, built into the tools your team already uses. Browse real integration scopes with straightforward setup and ongoing support estimates.</p>
+      </div>
+      <aside class="hero-note"><span class="note-star" aria-hidden="true">✳</span><strong>20</strong><p>API integration services<br>Clear scope. Clear numbers.</p></aside>
+    </section>
+
+    <div class="ticker" aria-label="Service categories">
+      <div class="shell ticker-inner"><span>Email & productivity <b>✳</b></span><span>Maps & location <b>✳</b></span><span>Payments & messaging <b>✳</b></span><span>AI & document workflows <b>✳</b></span></div>
+    </div>
+
+    <section class="shell catalog" id="catalog">
+      <div class="section-heading">
+        <div><div class="eyebrow">Pick your building block</div><h2>Find an API for the job.</h2></div>
+        <div class="count" id="result-count" aria-live="polite">20 services</div>
+      </div>
+      <div class="tools">
+        <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input id="search" type="search" placeholder="Search APIs or use cases..." aria-label="Search API services"></label>
+        <div class="filters" id="filters" aria-label="Filter by category"></div>
+        <div class="price-switch" role="group" aria-label="Price billing period">
+          <button type="button" data-period="monthly" class="active" aria-pressed="true">Monthly</button>
+          <button type="button" data-period="yearly" aria-pressed="false">Yearly</button>
+        </div>
+      </div>
+      <div class="grid" id="api-grid"></div>
+    </section>
+
+    <section class="feature-band" id="how-it-works">
+      <div class="shell feature-inner">
+        <div>
+          <div class="eyebrow">Featured integration</div>
+          <h2>Your inbox, right inside your CRM.</h2>
+          <p>Connect Gmail or Microsoft 365 with secure provider sign-in. Bring conversations, replies and attachments into one place, then link each thread to a client or deal.</p>
+          <a href="#catalog" class="feature-link" id="featured-link">Explore email packages <span aria-hidden="true">→</span></a>
+        </div>
+        <div>
+          <div class="feature-price"><strong>€1,650</strong><span>Professional package<br>Fixed development estimate · about 2 weeks</span></div>
+          <p style="margin-top:13px;font-size:11px">Packages start at €950. Multi-provider enterprise setup from €3,100.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell trust" aria-label="Pricing details">
+      <div class="trust-item"><strong>Transparent estimates</strong><span>See implementation setup and optional ongoing support before you start.</span></div>
+      <div class="trust-item"><strong>Your data stays yours</strong><span>OAuth sign-in for email providers. No mailbox passwords collected by us.</span></div>
+      <div class="trust-item"><strong>No pricing surprises</strong><span>Third-party API, hosting and usage charges are shown separately from development.</span></div>
+    </section>
+  </main>
+
+  <footer><div class="shell footer-inner"><strong>APISADDA</strong><span class="disclaimer">Planning estimates in EUR, not a live vendor price list. Provider usage, hosting, taxes and plan fees are billed separately. Final quote depends on scope and access.</span><span>© 2026 APISADDA</span></div></footer>
+
+  <dialog id="service-dialog" aria-labelledby="dialog-title"><div id="dialog-body"></div></dialog>
+
+  <script>
+    const services = [
+      { id: "email", name: "Email Thread API", category: "Email", icon: "@", description: "Connect Gmail or Outlook threads to your CRM.", setup: 1650, monthly: 100, yearly: 1080, fullTime: "€950–€3,100", duration: "1–4 weeks", popular: true,
+        features: ["Secure Google or Microsoft OAuth sign-in; no mailbox passwords stored.", "Group messages into conversations; search, paginate and download attachments.", "Professional and Enterprise: compose and reply, near-real-time sync, CRM linking and multiple mailboxes.", "14-day post-launch bug-fix window; one review round included."],
+        packages: [{name:"Essential", price:"€950", scope:"One provider; read, search, thread view and attachment downloads.", time:"24 hours · 1–1.5 weeks"},{name:"Professional", price:"€1,650", scope:"Essential plus reply/compose, real-time sync, labels and CRM linking.", time:"42 hours · about 2 weeks"},{name:"Enterprise", price:"€3,100", scope:"Gmail + Microsoft 365 + custom IMAP/SMTP; shared and combined inboxes.", time:"78 hours · 3–4 weeks"}],
+        work: [["App registration & OAuth", "Provider app setup, secure sign-in and token renewal", "6 h · €240"],["Fetch, sync & threading", "Initial import, new-message sync, conversation grouping", "9 h · €360"],["Inbox & attachments", "Inbox screens, conversation view, search and downloads", "9 h · €360"],["Live updates & compose", "Notifications, reply/compose and labels", "11 h · €440"],["CRM linking, QA & launch", "Record linking, testing, review and deployment", "7 h · €280"]],
+        addOns: "Templates €150 · Advanced search €150 · AI thread summaries €250 (AI usage extra) · Shared team inbox €300 · Maintenance €100/month.",
+        note: "Custom IMAP/SMTP adds €250 to Package 1 or 2. Third-party charges, Google app verification, hosting and AI usage are excluded." },
+      {id:"calendar",name:"Calendar Sync API",category:"Email",icon:"31",description:"Sync Google Calendar and Microsoft events.",setup:1200,monthly:75,yearly:810,fullTime:"€900–€2,400",duration:"1–3 weeks",features:["OAuth connection for Google Calendar or Microsoft Graph.","Create, update and cancel events from your application.","Availability lookups and webhook-based event updates.","Timezone-aware reminders and attendee handling."],note:"Provider API quotas and calendar subscription fees are not included."},
+      {id:"contacts",name:"Contacts & CRM API",category:"Email",icon:"ID",description:"Keep customer contacts in sync across systems.",setup:950,monthly:60,yearly:648,fullTime:"€700–€1,900",duration:"1–2 weeks",features:["Import and export contacts with field mapping.","Deduplicate records and sync changes in both directions.","Support common CRM providers and custom webhooks."],note:"CRM subscription and vendor API limits are separate."},
+      {id:"drive",name:"Cloud Drive API",category:"Email",icon:"↗",description:"Browse and share Drive or OneDrive files in-app.",setup:1100,monthly:65,yearly:702,fullTime:"€800–€2,100",duration:"1–2 weeks",features:["Secure Google Drive or OneDrive sign-in.","List, upload, download and share files.","Folder selection and permission-aware access."],note:"Cloud storage capacity and vendor subscriptions are billed by the provider."},
+      {id:"maps",name:"Maps & Geocoding API",category:"Maps",icon:"⌖",description:"Show interactive maps and turn addresses into coordinates.",setup:850,monthly:55,yearly:594,fullTime:"€650–€1,700",duration:"1–2 weeks",popular:true,features:["Interactive map display with map pins.","Address-to-coordinate geocoding and reverse lookup.","Provider key restrictions and usage monitoring."],note:"Google Maps, Mapbox or other map-provider usage is billed separately and can vary by request volume."},
+      {id:"places",name:"Places & Nearby Search",category:"Maps",icon:"POI",description:"Search nearby businesses, places and points of interest.",setup:750,monthly:45,yearly:486,fullTime:"€550–€1,500",duration:"1 week",features:["Nearby and text-based place search.","Place details, opening hours and map markers.","Radius, category and location filters."],note:"Place data requests may incur separate vendor usage charges."},
+      {id:"routes",name:"Directions & Routes API",category:"Maps",icon:"↗",description:"Calculate routes, distance, duration and ETAs.",setup:900,monthly:55,yearly:594,fullTime:"€700–€1,800",duration:"1–2 weeks",features:["Driving, walking or cycling route options where supported.","Distance, duration, waypoint and ETA display.","Route results integrated into map views."],note:"Routing provider request charges are separate; live traffic may require a paid vendor plan."},
+      {id:"distance",name:"Distance Matrix API",category:"Maps",icon:"↔",description:"Compare travel times across many origins and destinations.",setup:800,monthly:50,yearly:540,fullTime:"€600–€1,600",duration:"1 week",features:["Batch origin-to-destination distance calculations.","Driving duration and route matrix results.","Caching and request-volume safeguards."],note:"Provider billing is often based on elements (origins × destinations). Vendor charges excluded."},
+      {id:"weather",name:"Weather Data API",category:"Maps",icon:"☼",description:"Add current conditions and forecast data by location.",setup:650,monthly:40,yearly:432,fullTime:"€500–€1,300",duration:"1 week",features:["Current conditions and forecast display.","Location lookup and units conversion.","Scheduled refresh and graceful provider fallback."],note:"Forecast provider plans and commercial data rights vary; usage fees excluded."},
+      {id:"payments",name:"Online Payments API",category:"Payments",icon:"€",description:"Accept one-time payments with Stripe or an equivalent.",setup:1400,monthly:85,yearly:918,fullTime:"€1,000–€2,800",duration:"1–3 weeks",popular:true,features:["Hosted checkout or embedded payment flow.","Payment status webhooks and order updates.","Refund workflow and basic payment reporting."],note:"Payment processor transaction fees, tax advice and compliance assessments are not included."},
+      {id:"subscriptions",name:"Subscriptions & Billing API",category:"Payments",icon:"↻",description:"Manage recurring plans, renewals and customer billing.",setup:1600,monthly:95,yearly:1026,fullTime:"€1,200–€3,200",duration:"2–4 weeks",features:["Create plans, trials and recurring subscriptions.","Handle renewal, cancellation and payment-failure events.","Customer billing portal and subscription status."],note:"Processor transaction fees and subscription billing platform fees are separate."},
+      {id:"sms",name:"SMS & OTP API",category:"Messaging",icon:"#",description:"Send SMS notifications and one-time verification codes.",setup:700,monthly:45,yearly:486,fullTime:"€500–€1,500",duration:"1 week",features:["Transactional SMS integration and delivery callbacks.","One-time passcodes with expiry and retry limits.","Country and rate controls."],note:"SMS carrier charges and phone-number rental are billed by the messaging provider."},
+      {id:"whatsapp",name:"WhatsApp Business API",category:"Messaging",icon:"WA",description:"Send approved WhatsApp messages to customers.",setup:1100,monthly:70,yearly:756,fullTime:"€800–€2,200",duration:"1–2 weeks",features:["Business messaging provider connection.","Approved template message delivery and webhooks.","Incoming message events and delivery status."],note:"Meta conversation charges, provider fees and business verification are excluded."},
+      {id:"ai",name:"AI Assistant API",category:"AI & Docs",icon:"AI",description:"Add an AI assistant grounded in your business content.",setup:1300,monthly:80,yearly:864,fullTime:"€900–€2,600",duration:"1–3 weeks",features:["Chat interface connected to a selected AI provider.","Prompt configuration and optional knowledge search.","Basic usage controls and failure handling."],note:"AI model token usage, vector database and hosting costs are separate and usage-dependent."},
+      {id:"ocr",name:"Document OCR API",category:"AI & Docs",icon:"OCR",description:"Extract text and fields from invoices and documents.",setup:950,monthly:60,yearly:648,fullTime:"€700–€1,900",duration:"1–2 weeks",features:["Upload PDFs or images and extract text.","Structured field extraction for agreed document types.","Review and correction workflow for uncertain results."],note:"OCR provider charges per page or document are extra. Accuracy depends on source quality."},
+      {id:"esign",name:"E-signature API",category:"AI & Docs",icon:"✍",description:"Prepare, send and track agreements for signature.",setup:1200,monthly:75,yearly:810,fullTime:"€900–€2,500",duration:"1–3 weeks",features:["Generate or upload documents for signature.","Recipient signing workflow and status callbacks.","Completed document retrieval and audit trail links."],note:"Electronic-signature vendor plans and legal review are not included."},
+      {id:"storage",name:"File Storage API",category:"AI & Docs",icon:"▤",description:"Upload, store and serve files securely from your app.",setup:900,monthly:55,yearly:594,fullTime:"€650–€1,800",duration:"1–2 weeks",features:["Secure uploads and controlled downloads.","File metadata, access permissions and lifecycle rules.","Optional thumbnail generation for images and PDFs."],note:"Storage, bandwidth and backup charges depend on usage and are billed by the cloud vendor."},
+      {id:"translate",name:"Translation API",category:"AI & Docs",icon:"文",description:"Translate app content and customer-submitted text.",setup:600,monthly:35,yearly:378,fullTime:"€450–€1,200",duration:"1 week",features:["Translate text through a selected language provider.","Language detection and supported-language handling.","Optional caching for repeated content."],note:"Translation vendor charges usually depend on character volume and are separate."},
+      {id:"address",name:"Address Validation API",category:"Maps",icon:"✓",description:"Check, standardize and enrich postal addresses.",setup:650,monthly:40,yearly:432,fullTime:"€500–€1,400",duration:"1 week",features:["Normalize address fields and postal formatting.","Validate addresses against a selected data source.","Flag incomplete or uncertain address matches."],note:"Coverage and per-lookup charges differ by address-data provider and country."},
+      {id:"analytics",name:"Product Analytics API",category:"Data",icon:"▥",description:"Send product events and build usage dashboards.",setup:1000,monthly:65,yearly:702,fullTime:"€750–€2,100",duration:"1–2 weeks",features:["Define and instrument agreed product events.","User and account traits with privacy-aware settings.","Basic funnel or adoption reporting integration."],note:"Analytics platform plans, event limits and consent implementation are separate."}
+    ];
+
+    const categories = ["All", ...new Set(services.map(service => service.category))];
+    const grid = document.querySelector("#api-grid");
+    const filterBox = document.querySelector("#filters");
+    const searchInput = document.querySelector("#search");
+    const resultCount = document.querySelector("#result-count");
+    const dialog = document.querySelector("#service-dialog");
+    let selectedCategory = "All";
+    let pricePeriod = "monthly";
+
+    const euro = amount => `€${amount.toLocaleString("en-IE")}`;
+
+    function renderFilters() {
+      filterBox.innerHTML = categories.map(category => `<button class="filter${category === selectedCategory ? " active" : ""}" type="button" data-category="${category}" aria-pressed="${category === selectedCategory}">${category}</button>`).join("");
+    }
+
+    function renderServices() {
+      const query = searchInput.value.trim().toLowerCase();
+      const visible = services.filter(service => {
+        const matchesCategory = selectedCategory === "All" || service.category === selectedCategory;
+        const matchesSearch = `${service.name} ${service.description} ${service.category}`.toLowerCase().includes(query);
+        return matchesCategory && matchesSearch;
+      });
+      resultCount.textContent = `${visible.length} ${visible.length === 1 ? "service" : "services"}`;
+      grid.innerHTML = visible.length ? visible.map((service, index) => {
+        const price = pricePeriod === "monthly" ? service.monthly : service.yearly;
+        const suffix = pricePeriod === "monthly" ? "/mo" : "/yr";
+        return `<article class="api-card" style="animation-delay:${Math.min(index, 12) * 22}ms">
+          <div class="card-top"><span class="api-icon" aria-hidden="true">${service.icon}</span>${service.popular ? '<span class="popular">Popular</span>' : ""}</div>
+          <h3>${service.name}</h3><p class="description">${service.description}</p>
+          <div class="card-bottom"><div><div class="price-label">Ongoing support</div><div class="price">${euro(price)}<small>${suffix}</small></div><div class="setup-label">Setup from ${euro(service.setup)}</div></div>
+          <button class="detail-button" type="button" aria-label="View ${service.name} details" data-service="${service.id}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </article>`;
+      }).join("") : '<div class="empty">No APIs found. Try another search or category.</div>';
+    }
+
+    function renderDetail(service) {
+      const email = service.id === "email";
+      const packageMarkup = email ? `<section class="detail-section"><h3>Fixed-price packages</h3><div class="table-scroll"><table class="package-table"><thead><tr><th>Package</th><th>Includes</th><th>Effort & delivery</th><th>Price</th></tr></thead><tbody>${service.packages.map(pack => `<tr><td><strong>${pack.name}</strong></td><td>${pack.scope}</td><td>${pack.time}</td><td>${pack.price}</td></tr>`).join("")}</tbody></table></div></section>
+        <section class="detail-section"><h3>Professional package · cost breakdown</h3><div class="table-scroll"><table class="work-table"><thead><tr><th>Task</th><th>What it covers</th><th>Estimate</th></tr></thead><tbody>${service.work.map(row => `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td></tr>`).join("")}<tr><td><strong>Total</strong></td><td>42 hours × €40/hour; fixed-price quote</td><td>€1,680 → €1,650</td></tr></tbody></table></div></section>
+        <section class="detail-section"><h3>Optional add-ons</h3><p style="font-size:11px;line-height:1.7;color:#4e5c53;margin:0">${service.addOns}</p></section>
+        <section class="detail-section"><h3>Typical delivery plan</h3><ul><li>Days 1–4: kick-off, provider app registration, secure sign-in and first import.</li><li>Days 5–8: conversation grouping, instant updates and inbox screens.</li><li>Days 9–11: replies, attachments, labels and CRM linking.</li><li>Days 12–14: staging review, one feedback round and launch.</li></ul></section>` : `<section class="detail-section"><h3>Typical scope</h3><ul>${service.features.map(feature => `<li>${feature}</li>`).join("")}</ul></section>`;
+      const emailCallout = email ? `<div class="email-callout"><strong>What your team can do:</strong> connect Gmail or Outlook through OAuth, read complete conversations, search and paginate messages, open attachments, reply from the CRM, and link threads to client or property records. Enterprise adds multiple providers and shared inboxes.</div>` : "";
+      const subject = encodeURIComponent(`${service.name} integration enquiry`);
+      const body = encodeURIComponent(`Hello APISADDA,\n\nI'm interested in the ${service.name}. Please share a tailored quote.\n\nMy preferred plan: `);
+      document.querySelector("#dialog-body").innerHTML = `<div class="dialog-head"><div><div class="eyebrow">${service.category} integration</div><h2 id="dialog-title">${service.name}</h2><p>${service.description}</p></div><button class="close" type="button" aria-label="Close details"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+        <div class="dialog-content"><div class="detail-summary"><div class="summary-box"><span>One-time setup</span><strong>from ${euro(service.setup)}</strong></div><div class="summary-box"><span>Monthly support</span><strong>${euro(service.monthly)}/mo</strong></div><div class="summary-box"><span>Annual support</span><strong>${euro(service.yearly)}/yr</strong></div><div class="summary-box"><span>Full implementation</span><strong>${service.fullTime}</strong></div><div class="summary-box"><span>Typical delivery</span><strong>${service.duration}</strong></div></div>
+        ${emailCallout}${packageMarkup}<section class="detail-section"><h3>Included in a typical build</h3><ul>${service.features.map(feature => `<li>${feature}</li>`).join("")}</ul></section>
+        <div class="email-callout"><strong>Third-party costs:</strong> ${service.note}</div>
+        <div class="detail-actions"><small>Estimates are indicative development pricing in EUR. Final fixed quote follows a scope review. Support is optional after launch.</small><a class="primary-button" href="mailto:hello@apisadda.com?subject=${subject}&body=${body}">Request a quote <span aria-hidden="true">↗</span></a></div></div>`;
+      dialog.showModal();
+    }
+
+    renderFilters();
+    renderServices();
+    filterBox.addEventListener("click", event => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+      selectedCategory = button.dataset.category;
+      renderFilters();
+      renderServices();
+    });
+    searchInput.addEventListener("input", renderServices);
+    document.querySelector(".price-switch").addEventListener("click", event => {
+      const button = event.target.closest("[data-period]");
+      if (!button) return;
+      pricePeriod = button.dataset.period;
+      document.querySelectorAll("[data-period]").forEach(option => {
+        const active = option === button;
+        option.classList.toggle("active", active);
+        option.setAttribute("aria-pressed", String(active));
+      });
+      renderServices();
+    });
+    grid.addEventListener("click", event => {
+      const button = event.target.closest("[data-service]");
+      if (button) renderDetail(services.find(service => service.id === button.dataset.service));
+    });
+    document.querySelector("#featured-link").addEventListener("click", event => {
+      event.preventDefault();
+      renderDetail(services.find(service => service.id === "email"));
+    });
+    dialog.addEventListener("click", event => {
+      if (event.target === dialog || event.target.closest(".close")) dialog.close();
+    });
+    dialog.addEventListener("click", event => {
+      if (event.target.closest(".primary-button")) dialog.close();
+    });
+  </script>
+</body>
+</html>
